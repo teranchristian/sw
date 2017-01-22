@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-        <title>Account Verification</title>
+        <title>User list</title>
         <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css" media="screen, projection, print" />
         <style type="text/css">
         </style>
@@ -19,9 +19,22 @@
           </div>
         </div> -->
         <div id="wrapper" class="wrapWidth ">
-            <div class="messageVerification  verification<?php echo ($error) ? 'Error' : 'Success'; ?>">
-                <?php echo $message ?>
-            </div>
+            <table id="userTable">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Deparment</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5">No records found!</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <script src="<?= $assestsPath ?>pub/assets/js/jquery-2.2.4.min.js"></script>
         <script src="<?= $assestsPath ?>pub/assets/js/script.js"></script>

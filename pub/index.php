@@ -16,14 +16,19 @@ if (isset($url[2])) {
 }
 
 $whitelist = [
-    'verify',
-    'password'
+    'user',
+    'api',
 ];
 
 if (!$controller || !in_array($controller, $whitelist)) {
     message("Page not found", 404);
 } else {
-    $controller = new \Controllers\UserController;
+    $class = "\Controllers\\".$controller."Controller";
+    if (!class_exists($class)) {
+        echo "error";
+        exit;
+    }
+    $controller = new $class;
     $response = $controller->$action();
 }
 
