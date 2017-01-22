@@ -22,11 +22,11 @@
             <table id="userTable">
                 <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Deparment</th>
+                    <th id='sortByFirstName'>First Name</th>
+                    <th id='sortByLastName'>Last Name</th>
+                    <th id='sortByEmail'>Email</th>
+                    <th id='sortByRole'>Role</th>
+                    <th id='sortDeparment'>Deparment</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var populateUser = function() {
     $.ajax({
         url:'api/user',
         type:'GET',
@@ -18,6 +19,7 @@ $(document).ready(function(){
           });
         }
     })
+  }();
 });
 
 
