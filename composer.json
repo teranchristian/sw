@@ -1,0 +1,10 @@
+{
+    "name": "switch tv",
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/var-dumper": "*"
+    },
+    "autoload": {
+        "psr-4": { "": "src/" }
+    }
+}
