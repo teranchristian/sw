@@ -9,15 +9,17 @@ class JsonResponse
         $jsonResponse = array("success" => true, "response" => $data);
         $jsonResponse = json_encode($jsonResponse);
         header("Content-Type: application/json");
-        return $jsonResponse;
+        echo $jsonResponse;
+        exit;
     }
 
-    protected function responseError($error)
+    public static function responseError($error)
     {
         $jsonResponse = array("success" => false, "response" => $error);
         $jsonResponse = json_encode($jsonResponse);
         header("Content-Type: application/json");
-        return $jsonResponse;
+        echo $jsonResponse;
+        exit;
     }
 
 }

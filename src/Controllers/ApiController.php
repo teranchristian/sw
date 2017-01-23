@@ -16,17 +16,15 @@ class ApiController
         ];
 
         $orderBy = getParameter($_GET['orderBy']);
-        $sortBy = getParameter($_GET['sortBy']);
-
-        if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {
-            echo 'error';
-            exit;
-        }
-
         if (isset($orderBy) && !in_array($orderBy, $allowSortBy)) {
-            echo 'error';
-            exit;
+            JsonResponse::responseError("'orderBy' parameter invalid");
         }
+
+        $sortBy = getParameter($_GET['sortBy']);
+        if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {
+            JsonResponse::responseError("'orderBy' parameter invalid");
+        }
+
 
         $userModel = new \Models\User;
         $users = $userModel->getUsers($orderBy, $sortBy);
@@ -34,7 +32,7 @@ class ApiController
             'users' => $users,
             'total' => count($users)
         ];
-        echo JsonResponse::responseSuccess($response);
+        JsonResponse::responseSuccess($response);
     }
 
     private function mapFields($field)
