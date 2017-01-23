@@ -15,7 +15,7 @@ class ApiController
             'department',
         ];
 
-        $orderBy = getParameter($_GET['orderby']);
+        $orderBy = getParameter($_GET['orderBy']);
         $sortBy = getParameter($_GET['sortBy']);
 
         if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {

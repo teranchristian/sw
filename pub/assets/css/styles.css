@@ -5,6 +5,9 @@ html, body {
     background: #f5f5f5;
 }
 
+#userTable thead tr th{
+    cursor: pointer;
+}
 .nav_bar {
     position: fixed;
     background-color: #101316;

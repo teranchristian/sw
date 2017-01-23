@@ -1,8 +1,12 @@
 $(document).ready(function(){
-  var populateUser = function() {
+  var generateUserTable = function (orderBy, sortBy) {
     $.ajax({
         url:'api/user',
         type:'GET',
+        data: { 
+          orderBy: orderBy,
+          sortBy: sortBy
+        },
         success:function(data){
           $("#userTable tbody").empty();
           var response = data['response'];
@@ -15,11 +19,20 @@ $(document).ready(function(){
               $('<td>').text(user.department)
             );
               $("#userTable tbody").append(tr); 
-              
           });
         }
     })
-  }();
+  };
+  generateUserTable();
+
+  $myTable = $("#userTable");
+
+  $("thead > tr > th", $myTable).click(function($e) {
+      // $("tbody > tr", $myTable).fadeOut();
+      var orderBy = $(this).data('orderby')
+      var sortBy = $(this).data('sortby')
+      generateUserTable(orderBy, sortBy);
+  });
 });
 
 
