@@ -18,19 +18,17 @@ $(document).ready(function(){
               $('<td>').text(user.role),
               $('<td>').text(user.department)
             );
-              $("#userTable tbody").append(tr); 
+            $("#userTable tbody").append(tr); 
           });
         }
     })
   };
   generateUserTable();
 
-  $myTable = $("#userTable");
-
-  $("thead > tr > th", $myTable).click(function($e) {
-      // $("tbody > tr", $myTable).fadeOut();
+  $("thead > tr > th", $("#userTable")).click(function($e) {
       var orderBy = $(this).data('orderby')
       var sortBy = $(this).data('sortby')
+      $(this).data('sortby', sortBy === 'DESC' ? 'ASC':'DESC');
       generateUserTable(orderBy, sortBy);
   });
 });
