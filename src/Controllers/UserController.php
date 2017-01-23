@@ -6,9 +6,7 @@ class UserController
 {
     public function index()
     {
-        return render('index', [
-            'message' => 'test',
-        ]);
+        return render('index');
     }
 
 }
