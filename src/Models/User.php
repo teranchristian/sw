@@ -4,14 +4,14 @@ namespace Models;
 class User
 {
 
-    public function getUsers($orderBy = null)
+    public function getUsers($orderBy = null, $sortBy = 'ASC')
     {
         try {
             $db = new \PDO('mysql:host=localhost;dbname=db', 'devct', 'qwerty');
             $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $query = "select * from `user` ";
             if (isset($orderBy)) {
-                $query .= "order by $orderBy";
+                $query .= "order by $orderBy $sortBy ";
             }
             $statement = $db->query($query);
             $rows = $statement->fetchAll(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator
