@@ -1,7 +1,10 @@
 $(document).ready(function(){
+  var getLocation = window.location;
+  var app = getLocation.pathname.split('/')[1]
+  var url = '//'+getLocation.host+'/'+app;
   var generateUserTable = function (orderBy, sortBy) {
     $.ajax({
-        url:'api/user',
+        url: url+'/api/user',
         type:'GET',
         data: { 
           orderBy: orderBy,

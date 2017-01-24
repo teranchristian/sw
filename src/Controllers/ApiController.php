@@ -5,6 +5,14 @@ use Helper\JsonResponse;
 
 class ApiController
 {
+
+    private $db = null;
+
+    function __construct()
+    {
+        $this->db = new \Helper\DatabaseConnection();
+    }
+
     public function user()
     {
         $allowSortBy = [
@@ -26,7 +34,7 @@ class ApiController
         }
 
 
-        $userModel = new \Models\User;
+        $userModel = new \Models\User($this->db);
         $users = $userModel->getUsers($orderBy, $sortBy);
         $response = [
             'users' => $users,

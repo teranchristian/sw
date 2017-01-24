@@ -1,35 +1,34 @@
 <?php
 namespace Models;
 
+
 class User
 {
+    private $db;
+
+    function __construct($db)
+    {
+        $this->db = $db;
+    }
 
     public function getUsers($orderBy = null, $sortBy = 'ASC')
     {
-        try {
-            $db = new \PDO('mysql:host=localhost;dbname=db', 'devct', 'qwerty');
-            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $query = "select * from `user` ";
-            if (isset($orderBy)) {
-                $query .= "order by $orderBy $sortBy ";
-            }
-            $statement = $db->query($query);
-            $rows = $statement->fetchAll(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator
-            $users = [];
-            foreach ($rows as $row) {
-                $users[] = [
-                    'firstName' => $row['first_name'],
-                    'lastName' => $row['last_name'],
-                    'email' => $row['email'],
-                    'role' => $row['role'],
-                    'department' => $row['department'],
-                ];
-            }
-            return $users;
+        $query = "select * from `user` ";
+        if (isset($orderBy)) {
+            $query .= "order by $orderBy $sortBy ";
         }
-        catch(PDOException $e)
-        {
-            echo "Error: " . $e->getMessage();
+        $rows = $this->db->execute($query);
+
+        $users = [];
+        foreach ($rows as $row) {
+            $users[] = [
+                'firstName' => $row['first_name'],
+                'lastName' => $row['last_name'],
+                'email' => $row['email'],
+                'role' => $row['role'],
+                'department' => $row['department'],
+            ];
         }
+        return $users;
     }
 }

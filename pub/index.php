@@ -15,21 +15,16 @@ if (isset($url[2])) {
     $action = $url[2];
 }
 
-$whitelist = [
-    'user',
-    'api',
-];
+$class = "\Controllers\\".$controller."Controller";
+if (empty($controller) && !class_exists($class)) {
+    message('Page not found ', 404);
+}
 
-if (!$controller || !in_array($controller, $whitelist)) {
-    message("Page not found", 404);
-} else {
-    $class = "\Controllers\\".$controller."Controller";
-    if (!class_exists($class)) {
-        echo "error";
-        exit;
-    }
-    $controller = new $class;
+$controller = new $class();
+if (method_exists($controller, $action)) {
     $response = $controller->$action();
+} else {
+    message('Unknown Action: ' . $action, 404);
 }
 
 if ($response) {
