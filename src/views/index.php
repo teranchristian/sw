@@ -8,17 +8,8 @@
         <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css"/> 
     </head>
     <body class="container-fluid">
-    
-
-<!--         <div class="nav_bar">
-          <div class="logo">
-                <a href="sbs.com.au" title="Home" >
-                    <img src="assets/images/logo@2x.png">
-                </a>
-          </div>
-        </div> -->
         <div class="row ">
-            <div  style="float: none; margin: 0 auto;">
+            <div style="float: none; margin: 0 auto;">
                 <h1>User List (<span id="totalUsers">0</span>)</h1>
                 <div class="table-responsive">
                     <table id="userTable" class="table table-striped">
