@@ -10,6 +10,7 @@ $(document).ready(function(){
         success:function(data){
           $("#userTable tbody").empty();
           var response = data['response'];
+          $("#totalUsers").text(response['total']); 
           $.each(response['users'], function(key, user){
             var tr = $('<tr>').append(
               $('<td>').text(user.firstName),

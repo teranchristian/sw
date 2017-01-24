@@ -1,12 +1,11 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <title>Error Message</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-        <title>Account Verification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="<?= $assestsPath ?>pub/css/bootstrap.min.css" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css" media="screen, projection, print" />
-        <style type="text/css">
-        </style>
     </head>
     <body>
         <div class="nav_bar">
