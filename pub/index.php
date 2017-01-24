@@ -18,17 +18,16 @@ if (isset($url[2])) {
 $class = "\Controllers\\".$controller."Controller";
 if (empty($controller) && !class_exists($class)) {
     message('Page not found ', 404);
-}
-
-$controller = new $class();
-if (method_exists($controller, $action)) {
-    $response = $controller->$action();
 } else {
-    message('Unknown Action: ' . $action, 404);
-}
-
-if ($response) {
-    echo $response;
+    $controller = new $class();
+    if (method_exists($controller, $action)) {
+        $response = $controller->$action();
+        if ($response) {
+            echo $response;
+        }
+    } else {
+        message('Unknown Action: ' . $action, 404);
+    }
 }
 
 function getParameter(&$var)
@@ -46,7 +45,6 @@ function message($msg, $code)
         'error' => true,
         'message' => $msg,
     ]);
-    exit;
 }
 
 function render($view, $scope=[])

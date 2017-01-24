@@ -1,7 +1,6 @@
 <?php
 namespace Models;
 
-
 class User
 {
     private $db;

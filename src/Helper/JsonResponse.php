@@ -19,5 +19,4 @@ class JsonResponse
         header("Content-Type: application/json");
         return $jsonResponse;
     }
-
 }

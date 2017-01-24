@@ -8,7 +8,4 @@ class UserController
     {
         return render('index');
     }
-
 }
-
-

@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="<?= $assestsPath ?>pub/assets/css/bootstrap.min.css" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css"/>1
+        <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css"/>
     </head>
     <body>
         <div id="wrapper" class="wrapWidth ">

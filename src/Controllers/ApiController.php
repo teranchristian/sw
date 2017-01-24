@@ -41,7 +41,4 @@ class ApiController
         ];
         echo JsonResponse::responseSuccess($response);
     }
-
 }
-
-
