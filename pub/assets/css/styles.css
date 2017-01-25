@@ -17,6 +17,7 @@ h1 {
     margin: 20px 0;
     display: inline-block;
 }
+
 #userTable thead tr th{
     cursor: pointer;
 }

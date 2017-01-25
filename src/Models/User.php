@@ -10,10 +10,10 @@ class User
         $this->db = $db;
     }
 
-    public function getUsers($orderBy = null, $sortBy = 'ASC')
+    public function getUsers($orderBy = null, $sortBy = 'DESC')
     {
         $query = "select * from `user` ";
-        if (isset($orderBy)) {
+        if (!empty($orderBy)) {
             $query .= "order by $orderBy $sortBy ";
         }
         $rows = $this->db->execute($query);

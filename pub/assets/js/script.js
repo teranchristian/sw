@@ -30,9 +30,19 @@ $(document).ready(function(){
   generateUserTable();
 
   $("thead > tr > th", $("#userTable")).click(function($e) {
-      var orderBy = $(this).data('orderby')
-      var sortBy = $(this).data('sortby')
-      $(this).data('sortby', sortBy === 'DESC' ? 'ASC':'DESC');
+      var orderBy = $(this).attr('data-orderby')
+      var sortBy = $(this).attr('data-sortby')
+      var sort = 'DESC';
+      var arrow = 'glyphicon-arrow-up'
+
+      if (sortBy === 'DESC') {
+        sort = 'ASC';
+        arrow = 'glyphicon-arrow-down'
+      }
+      $(this).attr('data-sortby', sort);
+
+      $("thead > tr > th >span").removeClass()
+      $(this).children().addClass('glyphicon '+arrow);
       generateUserTable(orderBy, sortBy);
   });
 });
