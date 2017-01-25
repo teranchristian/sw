@@ -17,23 +17,23 @@
                             <tr>
                                 <th data-orderBy='first_name' data-sortBy='ASC'>
                                     First Name
-                                    <span class="glyphicon glyphicon-arrow-down hidden"></span>
+                                    <span></span>
                                 </th>
                                 <th data-orderBy='last_name' data-sortBy='DESC'>
                                     Last Name
-                                    <span class="glyphicon glyphicon-arrow-down hidden"></span>
+                                    <span></span>
                                 </th>
                                 <th data-orderBy='email' data-sortBy='DESC'>
                                     Email
-                                    <span class="glyphicon glyphicon-arrow-down hidden"></span>
+                                    <span></span>
                                 </th>
                                 <th data-orderBy='role' data-sortBy='DESC'>
                                     Role
-                                    <span class="glyphicon glyphicon-arrow-down hidden"></span>
+                                    <span></span>
                                 </th>
                                 <th data-orderBy='department' data-sortBy='DESC'>
                                     Deparment
-                                    <span class="glyphicon glyphicon-arrow-down hidden"></span>
+                                    <span></span>
                                 </th>
                             </tr>
                         </thead>
