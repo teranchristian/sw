@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var getLocation = window.location;
   var app = getLocation.pathname.split('/')[1]
   var url = '//'+getLocation.host+'/'+app;
@@ -20,7 +20,8 @@ $(document).ready(function(){
               $('<td>').text(user.lastName),
               $('<td>').text(user.email),
               $('<td>').text(user.role),
-              $('<td>').text(user.department)
+              $('<td>').text(user.department),
+              $("<td class='view' data-id='"+user.id+"' >").text('view')
             );
             $("#userTable tbody").append(tr); 
           });
@@ -44,6 +45,26 @@ $(document).ready(function(){
       $("thead > tr > th >span").removeClass()
       $(this).children().addClass('glyphicon '+arrow);
       generateUserTable(orderBy, sortBy);
+  });
+
+  $(document).on('click', "td.view", function () {
+    var userId = $(this).data('id');
+    $.ajax({
+      url: url+'/api/user/'+userId,
+      type:'GET',
+      success:function(data){
+        var response = data['response'];
+        var user = response['user'];
+        $('#userFirstName').text(user.firstName);
+        $('#userLastName').text(user.lastName);
+        $('#userEmail').text(user.email);
+        $("#dialog").dialog();
+      }
+    })
+  });
+
+  $(document).on('click', "#dialogClose", function () {
+    $('#dialo').dialog('close');
   });
 });
 

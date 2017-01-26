@@ -13,7 +13,7 @@ class ApiController
         $this->db = new \Helper\DatabaseConnection();
     }
 
-    public function user()
+    public function user($id = null)
     {
         $allowSortBy = [
             'first_name',
@@ -23,22 +23,34 @@ class ApiController
             'department',
         ];
 
-        $orderBy = getParameter($_GET['orderBy']);
-        if (isset($orderBy) && !in_array($orderBy, $allowSortBy)) {
-            echo JsonResponse::responseError("'orderBy' parameter invalid");
-        }
-
-        $sortBy = getParameter($_GET['sortBy']);
-        if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {
-            echo JsonResponse::responseError("'orderBy' parameter invalid");
-        }
-
         $userModel = new \Models\User($this->db);
-        $users = $userModel->getUsers($orderBy, $sortBy);
-        $response = [
-            'users' => $users,
-            'total' => count($users)
-        ];
+
+        if (isset($id)) {
+            if (!isset($id) && !is_integer($id)) {
+                echo JsonResponse::responseError("'id' parameter invalid");
+            }
+            $user = $userModel->getUser($id);
+            $response = [
+                'user' => $user,
+            ];
+        } else {
+            $orderBy = getParameter($_GET['orderBy']);
+            if (isset($orderBy) && !in_array($orderBy, $allowSortBy)) {
+                echo JsonResponse::responseError("'orderBy' parameter invalid");
+            }
+
+            $sortBy = getParameter($_GET['sortBy']);
+            if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {
+                echo JsonResponse::responseError("'orderBy' parameter invalid");
+            }
+            $users = $userModel->getUsers($orderBy, $sortBy);
+
+            $response = [
+                'users' => $users,
+                'total' => count($users)
+            ];
+        }
+
         echo JsonResponse::responseSuccess($response);
     }
 }

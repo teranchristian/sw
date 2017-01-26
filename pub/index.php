@@ -5,7 +5,8 @@ define("BASE_PATH", realpath(__DIR__.'/../'));
 
 $viewPath = BASE_PATH.'/src/views';
 
-$url = explode('/', trim($_SERVER['REDIRECT_URL'], '/'));
+$urlPath = trim($_SERVER['REDIRECT_URL'], '/');
+$url = explode('/', $urlPath);
 
 $assestsPath = '//'.$_SERVER['SERVER_NAME'].'/'.$url[0].'/';
 $controller = $url[1];
@@ -21,7 +22,14 @@ if (empty($controller) && !class_exists($class)) {
 } else {
     $controller = new $class();
     if (method_exists($controller, $action)) {
-        $response = $controller->$action();
+        preg_match("/sw\/api\/user\/(\d+)$/", $urlPath, $match);
+        if (!empty($match)) {
+            $id = $url[3];
+            $response = $controller->$action($id);
+        } else {
+            $response = $controller->$action();
+        }
+
         if ($response) {
             echo $response;
         }

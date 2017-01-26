@@ -16,11 +16,12 @@ class User
         if (!empty($orderBy)) {
             $query .= "order by $orderBy $sortBy ";
         }
-        $rows = $this->db->execute($query);
+        $rows = $this->db->all($query);
 
         $users = [];
         foreach ($rows as $row) {
             $users[] = [
+                'id' => $row['user_id'],
                 'firstName' => $row['first_name'],
                 'lastName' => $row['last_name'],
                 'email' => $row['email'],
@@ -29,5 +30,26 @@ class User
             ];
         }
         return $users;
+    }
+
+    public function getUser($id = null)
+    {
+        $query = "select * from `user` WHERE user_id=:id";
+        $param = array(':id' => $id);
+        
+
+        $row = $this->db->one($query, $param);
+        $user = [];
+        if (!empty($row)) {
+            $user = [
+                'id' => $row['user_id'],
+                'firstName' => $row['first_name'],
+                'lastName' => $row['last_name'],
+                'email' => $row['email'],
+                'role' => $row['role'],
+                'department' => $row['department'],
+            ];
+        }
+        return $user;
     }
 }

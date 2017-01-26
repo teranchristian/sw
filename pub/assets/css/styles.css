@@ -26,6 +26,16 @@ h1 {
     background-color: #ffff99;
 }
 
+.view {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+#dialog {
+    display:none;
+}
+
 .nav_bar {
     position: fixed;
     background-color: #101316;
