@@ -48,6 +48,13 @@ class User
                 'email' => $row['email'],
                 'role' => $row['role'],
                 'department' => $row['department'],
+                'dob' => $row['dob'],
+                'streetAddress1' => $row['street_address_1'],
+                'streetAddress2' => $row['street_address_2'],
+                'suburb' => $row['suburb'],
+                'state' => $row['state'],
+                'postcode' => $row['postcode'],
+                'country' => $row['country'],
             ];
         }
         return $user;

@@ -58,6 +58,15 @@ $(document).ready(function() {
         $('#userFirstName').text(user.firstName);
         $('#userLastName').text(user.lastName);
         $('#userEmail').text(user.email);
+        $('#userRole').text(user.role);
+        $('#userDeparment').text(user.Deparment);
+        $('#userDob').text(user.dob);
+        $('#userStreetAddress1').text(user.streetAddress1);
+        $('#userStreetAddress2').text(user.streetAddress2);
+        $('#userSuburb').text(user.suburb);
+        $('#userState').text(user.state);
+        $('#userPostcode').text(user.postcode);
+        $('#userCountry').text(user.country);
         $("#dialog").dialog();
       }
     })

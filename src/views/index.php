@@ -50,18 +50,53 @@
         </div>
         <div id="dialog" title="User Details">
           <div class="form-group">
-            <label for="email">First Name:</label>
+            <label >First Name:</label>
             <span id="userFirstName"><span>
           </div>
           <div class="form-group">
-            <label for="pwd">Last Name:</label>
+            <label >Last Name:</label>
             <span id="userLastName"><span>
           </div>
           <div class="form-group">
-            <label for="pwd">Email:</label>
+            <label >Email:</label>
             <span id="userEmail"><span>
           </div>
-          <button id="dialogClose" class="btn btn-default">close</button>
+          <div class="form-group">
+            <label >Role:</label>
+            <span id="userRole"><span>
+          </div>
+          <div class="form-group">
+            <label >Deparment:</label>
+            <span id="userDeparment"><span>
+          </div>
+          <div class="form-group">
+            <label >dob:</label>
+            <span id="userDob"><span>
+          </div>
+          <div class="form-group">
+            <label >street address 1:</label>
+            <span id="userStreetAddress1"><span>
+          </div>
+          <div class="form-group">
+            <label >street address 2:</label>
+            <span id="userStreetAddress2"><span>
+          </div>
+          <div class="form-group">
+            <label >Suburb:</label>
+            <span id="userSuburb"><span>
+          </div>
+          <div class="form-group">
+            <label >State:</label>
+            <span id="userState"><span>
+          </div>
+          <div class="form-group">
+            <label >postcode:</label>
+            <span id="userPostcode"><span>
+          </div>
+          <div class="form-group">
+            <label >Country:</label>
+            <span id="userCountry"><span>
+          </div>
         </div>
         <script src="<?= $assestsPath ?>pub/assets/js/jquery-2.2.4.min.js"></script>
         <script src="<?= $assestsPath ?>pub/assets/dist/js/jquery-ui.js"></script>

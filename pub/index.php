@@ -16,7 +16,7 @@ if (isset($url[2])) {
     $action = $url[2];
 }
 
-$class = "\Controllers\\".$controller."Controller";
+$class = "\Controllers\\".ucfirst($controller)."Controller";
 if (empty($controller) && !class_exists($class)) {
     message('Page not found ', 404);
 } else {
