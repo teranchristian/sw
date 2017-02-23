@@ -2,7 +2,9 @@
     "name": "switch tv",
     "minimum-stability": "stable",
     "require": {
-        "symfony/var-dumper": "*"
+        "symfony/var-dumper": "*",
+        "guzzlehttp/guzzle": "~6.0",
+        "nikic/fast-route": "^1.2"
     },
     "autoload": {
         "psr-4": { "": "src/" }

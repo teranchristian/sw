@@ -5,4 +5,4 @@ RewriteEngine on
 RewriteBase /sw
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*) pub/index.php?request=$1 [QSA,NC,L]
+RewriteRule ^(.*) pub/index.php [QSA,NC,L]

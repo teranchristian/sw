@@ -2,40 +2,38 @@
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../config.php';
 define("BASE_PATH", realpath(__DIR__.'/../'));
-
 $viewPath = BASE_PATH.'/src/views';
 
-$urlPath = trim($_SERVER['REDIRECT_URL'], '/');
-$url = explode('/', $urlPath);
+use GuzzleHttp\Psr7\ServerRequest;
 
-$assestsPath = '//'.$_SERVER['SERVER_NAME'].'/'.$url[0].'/';
-$controller = $url[1];
+$client = ServerRequest::fromGlobals();
+$uri = $client->getRequestTarget();
+$httpMethod = $client->getMethod();
 
-$action = 'index';
-if (isset($url[2])) {
-    $action = $url[2];
-}
+$uri = rawurldecode($uri);
 
-$class = "\Controllers\\".ucfirst($controller)."Controller";
-if (empty($controller) && !class_exists($class)) {
-    message('Page not found ', 404);
-} else {
-    $controller = new $class();
-    if (method_exists($controller, $action)) {
-        preg_match("/sw\/api\/user\/(\d+)$/", $urlPath, $match);
-        if (!empty($match)) {
-            $id = $url[3];
-            $response = $controller->$action($id);
-        } else {
-            $response = $controller->$action();
-        }
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    $r->addRoute('GET', '/sw/api/user', 'Api/user');
+    $r->addRoute('GET', '/sw/user', 'user/index');
+    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
+});
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 
-        if ($response) {
-            echo $response;
-        }
-    } else {
-        message('Unknown Action: ' . $action, 404);
-    }
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        echo "404 Not Found";
+    break;
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowedMethods = $routeInfo[1];
+        echo "405 Method Not Allowed";
+    break;
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $vars = $routeInfo[2];
+        list($class, $method) = explode("/", $handler, 2);
+        $class = "\Controllers\\".ucfirst($class)."Controller";
+        call_user_func_array(array(new $class, $method), $vars);
+    break;
 }
 
 function getParameter(&$var)
@@ -74,6 +72,6 @@ function render($view, $scope=[])
     ob_start();
     require $viewPath.'/'.$view.'.php';
     $out = ob_get_clean();
-    return $out;
+    echo $out;
 }
 

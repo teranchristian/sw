@@ -13,6 +13,11 @@ class ApiController
         $this->db = new \Helper\DatabaseConnection();
     }
 
+    public function test()
+    {
+        echo "test";
+    }
+
     public function user($id = null)
     {
         $allowSortBy = [

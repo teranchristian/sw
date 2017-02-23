@@ -4,9 +4,9 @@
         <title>User List</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="<?= $assestsPath ?>pub/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?= $assestsPath ?>pub/assets/dist/css/jquery-ui.min.css" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="<?= $assestsPath ?>pub/assets/css/styles.css"/> 
+        <link href="pub/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="pub/assets/dist/css/jquery-ui.min.css" rel="stylesheet">
+        <link type="pub/text/css" rel="stylesheet" href="assets/css/styles.css"/> 
     </head>
     <body class="container">
         <div class="row ">
@@ -98,8 +98,8 @@
             <span id="userCountry"><span>
           </div>
         </div>
-        <script src="<?= $assestsPath ?>pub/assets/js/jquery-2.2.4.min.js"></script>
-        <script src="<?= $assestsPath ?>pub/assets/dist/js/jquery-ui.js"></script>
-        <script src="<?= $assestsPath ?>pub/assets/js/script.js"></script>
+        <script src="pub/assets/js/jquery-2.2.4.min.js"></script>
+        <script src="pub/assets/dist/js/jquery-ui.js"></script>
+        <script src="pub/assets/js/script.js"></script>
     </body>
 </html>
