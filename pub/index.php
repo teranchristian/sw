@@ -14,6 +14,7 @@ $uri = rawurldecode($uri);
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/sw/api/user', 'Api/user');
+    $r->addRoute('GET', '/sw/api/user/{id:\d+}', 'Api/user');
     $r->addRoute('GET', '/sw/user', 'user/index');
     $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
 });
