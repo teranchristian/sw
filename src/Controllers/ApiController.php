@@ -13,7 +13,7 @@ class ApiController
         $this->db = new \Helper\DatabaseConnection();
     }
 
-    public function user($id = null)
+    public function user($request = null, $id = null,  $orderBy = null, $sortBy = null)
     {
         $allowSortBy = [
             'first_name',
@@ -23,6 +23,8 @@ class ApiController
             'department',
         ];
 
+        var_dump($request);
+        exit;
         $userModel = new \Models\User($this->db);
 
         if (isset($id)) {
@@ -34,12 +36,10 @@ class ApiController
                 'user' => $user,
             ];
         } else {
-            $orderBy = getParameter($_GET['orderBy']);
             if (isset($orderBy) && !in_array($orderBy, $allowSortBy)) {
                 echo JsonResponse::responseError("'orderBy' parameter invalid");
             }
 
-            $sortBy = getParameter($_GET['sortBy']);
             if (isset($sortBy) && !in_array($sortBy, ['ASC', 'DESC'])) {
                 echo JsonResponse::responseError("'orderBy' parameter invalid");
             }

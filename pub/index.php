@@ -6,15 +6,18 @@ $viewPath = BASE_PATH.'/src/views';
 
 use GuzzleHttp\Psr7\ServerRequest;
 
-$client = ServerRequest::fromGlobals();
-$uri = $client->getRequestTarget();
-$httpMethod = $client->getMethod();
+$request = ServerRequest::fromGlobals();
+$uri = $request->getRequestTarget();
+$uri = rawurldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+$httpMethod = $request->getMethod();
 
 $uri = rawurldecode($uri);
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/sw/api/user', 'Api/user');
     $r->addRoute('GET', '/sw/api/user/{id:\d+}', 'Api/user');
+    $r->addRoute('POST', '/sw/api/user/{id:\d+}', 'Api/user');
     $r->addRoute('GET', '/sw/user', 'user/index');
     $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
 });
@@ -30,7 +33,10 @@ switch ($routeInfo[0]) {
     break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
+        $vars = array_merge(
+                ['request' => $request->getParsedBody()],
+                $routeInfo[2]
+            );
         list($class, $method) = explode("/", $handler, 2);
         $class = "\Controllers\\".ucfirst($class)."Controller";
         call_user_func_array(array(new $class, $method), $vars);
